@@ -1,5 +1,6 @@
 import "./App.scss";
 import Signin from './components/signin/Signin'
+import Chat from './components/chat/Chat'
 import { useUser } from "./hooks/useUser";
 
 
@@ -10,7 +11,7 @@ function App() {
   }
   return (
     <div className="app">
-     test
+      <Chat />
     </div>
   )
 }

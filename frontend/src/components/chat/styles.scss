@@ -1,0 +1,9 @@
+.chat{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    flex-grow: 1;
+    height: 100%;
+    max-width: 1024px;
+}
