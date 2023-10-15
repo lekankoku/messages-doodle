@@ -20,6 +20,19 @@ const Chat = () => {
         fetchMessages();
     }, []);
 
+    useEffect(() => {
+        setTimeout(() => {
+          scrollToBottom();
+        }, 50);
+      }, [messages]);
+
+      const scrollToBottom = () => {
+        if (messageRefs.current.length > 0) {
+          messageRefs.current[messageRefs.current.length - 1].scrollIntoView({
+            behavior: "smooth",
+          });
+        }
+      };
    
 
       const fetchMessages = async () => {
