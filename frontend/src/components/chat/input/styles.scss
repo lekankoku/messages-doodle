@@ -1,0 +1,23 @@
+.chat-input{
+    display: flex;
+    align-items: center;
+    padding: 12px 12px;
+
+    input {
+        width: 100%;
+        border: none;
+        border-radius: 0.5rem;
+        resize: none;
+        margin-right: 1rem;
+        padding: 1rem;
+    }
+
+    .send-button {
+        color: #000;
+        text-transform: uppercase;
+        border: none;
+        cursor: pointer;
+        font-weight: bold;
+    }
+    
+}

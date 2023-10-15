@@ -1,7 +1,9 @@
 import React, { useRef, useEffect, useState } from "react";
+import { useUser } from "../../hooks/useUser";
 import ChatHeader from "./header/ChatHeader.jsx";
 import ChatHistory from "./history/ChatHistory";
 import ChatMessage from "./history/messages/ChatMessage";
+import ChatInput from "./input/ChatInput";
 
 import MessagesService from "../../services/MessagesService";
 
@@ -9,6 +11,7 @@ import MessagesService from "../../services/MessagesService";
 import "./styles.scss";
 
 const Chat = () => {
+    const { username } = useUser();
     const messagesService = new MessagesService();
     const messageRefs = useRef([]);
     const [messages, setMessages] = useState([]);
@@ -16,6 +19,8 @@ const Chat = () => {
     useEffect(() => {
         fetchMessages();
     }, []);
+
+   
 
       const fetchMessages = async () => {
         try {
@@ -29,6 +34,19 @@ const Chat = () => {
     
             return [...prevMessages, ...uniqueMessages];
           });
+        } catch (error) {
+          console.log(error);
+        }
+      };
+
+      const addMessage = async (content) => {
+        try {
+          const message = {
+            createdBy: username,
+            content,
+          }
+          const newMessage = await messagesService.sendMessage(message);
+          setMessages((prevMessages) => [...prevMessages, newMessage]);
         } catch (error) {
           console.log(error);
         }
@@ -51,6 +69,7 @@ const Chat = () => {
           </div>
         ))}
       </ChatHistory>
+      <ChatInput onAddMessage={addMessage} />
     </div>
   );
 };
