@@ -23,4 +23,14 @@ public class MessageService {
     public List<Message> getMessages(){
         return messageRepository.findAll(Sort.by(Sort.Direction.ASC, "createdAt"));
     }
+
+    /**
+     * Receives messages from client and persists it
+     *
+     * @param message - message from cleint
+     * @return persisted message
+     */
+    public Message createMessage(Message message){
+        return messageRepository.save(message);
+    }
 }
